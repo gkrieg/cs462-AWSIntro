@@ -1,0 +1,23 @@
+{
+  "name": "firstproject",
+  "version": "0.0.0",
+  "description": "462 project1",
+  "main": "index.js",
+  "dependencies": {
+    "express": "~4.13.3",
+    "node": "~0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gkrieg/cs462-AWSIntro.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/gkrieg/cs462-AWSIntro/issues"
+  }
+}
