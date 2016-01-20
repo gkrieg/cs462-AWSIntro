@@ -46,10 +46,10 @@ app.post('/redirect', function(req, res) {
     var versionnum = req.headers["accept"];
     console.log(req.headers);
     console.log(versionnum);
-    if (versionnum = "application/vnd.byu.cs462.v1+json") {
+    if (versionnum == "application/vnd.byu.cs462.v1+json") {
       res.send({"version": "v1" })
     }
-    else if (versionnum = "application/vnd.byu.cs462.v2+json") {
+    else if (versionnum == "application/vnd.byu.cs462.v2+json") {
       res.send({"version": "v2" })
     }
   });
