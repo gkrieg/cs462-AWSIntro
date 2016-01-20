@@ -12,3 +12,10 @@ var port = server.address().port;
 });
 app.use(express.static(__dirname + '/public'));
 express.static.mime.define({"text/html": ["byu"]});
+
+app.post('/headers', function(req, res) {
+  var headers = req.headers;
+  var body = req.body;
+  var params = req.params;
+    res.send(headers, body, params);
+});
