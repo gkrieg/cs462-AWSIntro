@@ -22,7 +22,7 @@ express.static.mime.define({"text/html": ["byu"]});
 app.post('/headers', function(req, res) {
   var headers = req.headers;
   var body = req.body;
-  var params = JSON.stringify(req.params);
+  var params = JSON.stringify(req.query);
   var together  = JSON.stringify(headers) + "\n" + JSON.stringify(body) + "\n" + params;
     res.send(together);
 });
