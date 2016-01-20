@@ -31,7 +31,12 @@ app.post('/redirect', function(req, res) {
   var params = JSON.stringify(req.query);
   const dict = {"foo": "http://www.google.com", "bar": "learningsuite.byu.edu"};
   var redirectto = null;
-  if Object.keys(params)[0] in dict {
+  for key in params {
+    if key in dict {
+    redirectto = dict[params];
+  }
+  }
+  if .keys(params)[0] in dict {
     redirectto = dict[params];
   }
   res.redirect(redirectto);
