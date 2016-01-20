@@ -11,3 +11,5 @@ var host = server.address().address;
 var port = server.address().port;
 });
 app.use(express.static(__dirname + '/public'));
+app.static.mime.define({"text/html": ["byu"]});
+})
