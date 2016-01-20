@@ -26,3 +26,14 @@ app.post('/headers', function(req, res) {
   var together  = JSON.stringify(headers) + "\n" + JSON.stringify(body) + "\n" + params;
     res.send(together);
 });
+
+app.post('/redirect', function(req, res) {
+  var params = JSON.stringify(req.query);
+  const dict = {"foo": "http://www.google.com", "bar": "learningsuite.byu.edu"};
+  var redirectto = null;
+  if dict.contains(Object.keys(params)[0]) {
+    redirectto = dict[params];
+  }
+  res.redirect(redirectto);
+    
+});
