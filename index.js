@@ -40,7 +40,15 @@ app.post('/redirect', function(req, res) {
     res.redirect(redirectto);
   }
   }
-
-  
-    
 });
+
+  app.get('/version', function(req,res) {
+    var versionnum = req.headers["accept"];
+    if (versionnum = "application/vnd.byu.cs462.v1+json") {
+      res.send({"version": "v1" })
+    }
+    else if (versionnum = "application/vnd.byu.cs462.v2+json") {
+      res.send({"version": "v2" })
+    }
+  });
+    
