@@ -29,6 +29,7 @@ app.post('/headers', function(req, res) {
 
 app.post('/redirect', function(req, res) {
   var params = JSON.stringify(req.query);
+  console.log(params);
   const dict = {"foo": "http://www.google.com", "bar": "learningsuite.byu.edu"};
   var redirectto = null;
   for (var key in params) {
