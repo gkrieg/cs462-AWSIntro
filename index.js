@@ -28,7 +28,7 @@ app.post('/headers', function(req, res) {
 });
 
 app.post('/redirect', function(req, res) {
-  var params = JSON.stringify(req.query);
+  var params = req.query;
   console.log(params);
   console.log(Object.keys(params));
   const dict = {"foo": "http://www.google.com", "bar": "learningsuite.byu.edu"};
