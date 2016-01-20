@@ -17,5 +17,5 @@ app.post('/headers', function(req, res) {
   var headers = req.headers;
   var body = req.body;
   var params = req.params;
-    res.send(headers, body, params);
+    res.send(headers, "\n", body, params);
 });
