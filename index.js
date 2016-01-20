@@ -1,9 +1,15 @@
 // setup Express
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
+
+
 
 var portnum = 3000;
 var app = express();
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // start the server
 var server = app.listen(portnum, function() {
 console.log("Started on port 3000");
