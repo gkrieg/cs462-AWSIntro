@@ -34,9 +34,10 @@ app.post('/redirect', function(req, res) {
   for (var key in params) {
     if (key in dict) {
     redirectto = dict[key];
+    res.redirect(redirectto);
   }
   }
 
-  res.redirect(redirectto);
+  
     
 });
