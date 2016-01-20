@@ -17,6 +17,6 @@ app.post('/headers', function(req, res) {
   var headers = req.headers;
   var body = req.body;
   var params = req;
-  var together  = JSON.stringify(headers) + "\n" + JSON.stringify(body) + "\n" + JSON.stringify(params);
+  var together  = JSON.stringify(headers) + "\n" + JSON.stringify(body) + "\n" + params;
     res.send(together);
 });
