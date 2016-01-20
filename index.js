@@ -32,7 +32,7 @@ app.post('/redirect', function(req, res) {
   const dict = {"foo": "http://www.google.com", "bar": "learningsuite.byu.edu"};
   var redirectto = null;
   for (var key in params) {
-    if key in dict {
+    if (key in dict) {
     redirectto = dict[params];
   }
   }
