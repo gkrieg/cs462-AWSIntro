@@ -1,6 +1,7 @@
 // setup Express
 var express = require('express');
 var path = require('path');
+var cookie-parser = require('cookie-parser');
 
 var portnum = 3000;
 var app = express();
