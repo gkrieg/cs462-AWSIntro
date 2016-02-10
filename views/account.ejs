@@ -1,3 +1,12 @@
-<p>ID: <%= user.id %></p>
-<p>First Name: <%= user.name.givenName %></p>
-<p>Last Name: <%= user.name.familyName %></p>
+<% if (!user) { %>
+	<h2>Please Log in</h2>
+<% } else { %>
+	<h2>Select a person</h2>
+    <form action='/showaccount'>
+		<ul>
+	  <% for(var i=0; i<users.length; i++) {%>
+	     <li><a href="/user?fname=<%= users[i].name.familyName %>"><%= users[i].name.familyName %></a></li>
+	  <% } %>
+	  </ul>
+</form>
+<% } %>

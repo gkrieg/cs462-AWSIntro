@@ -4,10 +4,12 @@ var express = require('express')
   , FoursquareStrategy = require('passport-foursquare').Strategy
   , cookieParser = require('cookie-parser')
   , bodyParser = require('body-parser')
-  , session = require('express-session');
+  , session = require('express-session')
+  , expressLayouts = require('express-ejs-layouts');
 
 var FOURSQUARE_CLIENT_ID = "4ZWLPRNEK3EKR4XFDIQHHPSOSTGSGRMYIE0OW3WQODZODCUT"
 var FOURSQUARE_CLIENT_SECRET = "W0CBJBGBTE3HWVGM0C51M1QVTWAWOVOCVUEW4YDXCKV0AKMY";
+var registeredusers = [];
 
 
 // Passport session setup.
@@ -60,6 +62,8 @@ var app = express();
   app.use(cookieParser());
   app.use(bodyParser());
   app.use(session({ secret: 'keyboard cat' }));
+  app.use(expressLayouts);
+  app.set('layout','layout');
   // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
   app.use(passport.initialize());
@@ -69,16 +73,55 @@ var app = express();
 
 
 app.get('/', function(req, res){
+    if (req.user) {
+        var alreadythere = false;
+        for (var i = 0;i < registeredusers.length;i++) {
+            if (req.user.name.familyName == registeredusers[i].name.familyName) {
+                alreadythere = true;
+            }
+        }
+        if (!alreadythere) {
+            registeredusers.push(req.user);
+        }
+
+
+    }
+
   res.render('index', { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
+  res.render('account', { user: req.user, users: registeredusers });
 });
 
 app.get('/login', function(req, res){
+
   res.render('login', { user: req.user });
 });
+
+app.get('/user', function(req, res){
+    var showuser = null;
+    for (var i = 0;i < registeredusers.length;i++) {
+        if (registeredusers[i].name.familyName == req.query.fname) {
+            showuser = registeredusers[i];
+        }
+    }
+    // var sameUser = false;
+    // if (req.user.id == showuser.id) {
+    //     sameUser = true;
+    // }
+    var raw  = eval("(" + showuser._raw + ")");
+
+  res.render('user', { userCheckins: raw.response.user.checkins.items, user: req.user, numberCheckins: raw.response.user.checkins.count });
+});
+
+app.get('/showaccount', ensureAuthenticated, function(req,res){
+    if (req.user.name.familyName == req.query.lname) {
+        //put stuff in here
+    }
+    res.render('accountview', { user: req.user, fname: req.query.fname, lname: req.query.lname});
+});
+
 
 // GET /auth/foursquare
 //   Use passport.authenticate() as route middleware to authenticate the
