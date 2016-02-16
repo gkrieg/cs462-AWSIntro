@@ -6,6 +6,17 @@ var express = require('express')
   , bodyParser = require('body-parser')
   , session = require('express-session')
   , expressLayouts = require('express-ejs-layouts');
+var fs = require('fs');
+var http = require('http')
+var https = require('https');
+
+var options = {
+   key  : fs.readFileSync('security/server.key'),
+   cert : fs.readFileSync('security/server.crt')
+};
+
+http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
 
 var FOURSQUARE_CLIENT_ID = "4ZWLPRNEK3EKR4XFDIQHHPSOSTGSGRMYIE0OW3WQODZODCUT"
 var FOURSQUARE_CLIENT_SECRET = "W0CBJBGBTE3HWVGM0C51M1QVTWAWOVOCVUEW4YDXCKV0AKMY";
@@ -151,7 +162,6 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
 
 
 // Simple route middleware to ensure user is authenticated.
