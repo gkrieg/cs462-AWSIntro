@@ -15,8 +15,7 @@ var options = {
    cert : fs.readFileSync('security/server.crt')
 };
 
-http.createServer(app).listen(80);
-https.createServer(options, app).listen(443);
+
 
 var FOURSQUARE_CLIENT_ID = "4ZWLPRNEK3EKR4XFDIQHHPSOSTGSGRMYIE0OW3WQODZODCUT"
 var FOURSQUARE_CLIENT_SECRET = "W0CBJBGBTE3HWVGM0C51M1QVTWAWOVOCVUEW4YDXCKV0AKMY";
@@ -65,6 +64,9 @@ passport.use(new FoursquareStrategy({
 
 
 var app = express();
+
+http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
 
 // configure Express
 
